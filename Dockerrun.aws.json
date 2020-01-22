@@ -1,0 +1,40 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefitions": [
+        {
+            "name": "client",
+            "image": "godfather0309/multi-client",
+            "hostname": "client",
+            "essential": false
+
+        },
+        {
+            "name": "server",
+            "image": "godfather0309/multi-server",
+            "hostname": "api",
+            "essential": false
+
+        },
+        {
+            "name": "worker",
+            "image": "godfather0309/multi-worker",
+            "hostname": "worker",
+            "essential": false
+
+        },
+        {
+            "name": "nginx",
+            "image": "godfather0309/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+             "links": ["client","server"]
+
+        }
+    ]
+}
